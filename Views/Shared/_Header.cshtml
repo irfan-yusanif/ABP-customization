@@ -1,0 +1,79 @@
+﻿<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/"><i class="fa fa-cubes"></i> ADE Management System</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav"></ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                @if (CurrentUserDetail == null)
+                    {
+                    <li>
+                        <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> @L("LogIn")</a>
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="fa fa-user paddingRight5"></span>
+                            <span class="paddingRight5">@(CurrentUserDetail != null && !string.IsNullOrWhiteSpace(CurrentUserDetail.FullName) ? CurrentUserDetail.FullName : User.Identity.Name)</span>
+                            <span class="fa fa-caret-down"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">User Profile</a></li>
+
+                            <!-- #region Any custom links in dropdown based on the user permissions -->
+                            @*@if (CurrentUserDetail.PlatformPortal && (CurrentUserDetail.MerchantPortal || CurrentUserDetail.PartnerPortal)) //user should have 2 or more portals for the Portal Selector to be visible
+                                {
+                                    <li class="dropdown dropdown-submenu">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <span class="paddingRight5">Portal Selector</span>
+                                            <span class="fa fa-caret-right"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @if (CurrentUserDetail.MerchantPortal)
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Home", new { Area = "MerchantPortal" })">Merchant Portal</a>
+                                                </li>
+                                            }
+                                            @if (CurrentUserDetail.PartnerPortal)
+                                            {
+                                                <li>
+                                                    <a href="@Url.Action("Index", "Home", new { Area = "PartnerPortal" })">Partner Portal</a>
+                                                </li>
+                                            }
+                                            <li>
+                                                <a href="#" onclick="return false;">
+                                                    <span class="paddingRight5">Platform Portal</span>
+                                                    <span class="fa fa-check"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }*@
+
+                            <!-- #endregion -->
+
+                            <li class="divider"></li>
+                            <li>
+                                <a href="@Url.Action("Logout", "Account")">
+                                    <span class="fa fa-sign-out paddingRight5"></span>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    }
+            </ul>
+        </div>
+    </div>
+</div>

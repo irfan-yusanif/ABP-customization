@@ -1,13 +1,5 @@
 ﻿@using Abp.Timing
 @using Abp.Web.Mvc.Extensions
-@*
-    IMPORTANT NOTES FROM ASP.NET BOILERPLATE:
-
-    This _Layout.cshtml is not used actually. It's left here if you want to add some classic style (MPA)
-    pages to your application.
-
-    See App/Main/views/layout/layout.cshtml for Angular application's layout page.
-*@
 @{
     SetAntiForgeryCookie();
 }
@@ -20,9 +12,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>tempProject</title>
+    <title>@ViewBag.Title</title>
 
-    <link rel="shortcut icon" href="~/favicon.ico">
+    @*<link rel="shortcut icon" href="~/favicon.ico">*@
 
     @Html.IncludeStyle("~/Content/themes/base/all.css")
     @Html.IncludeStyle("~/Content/bootstrap-cosmo.min.css")
@@ -72,8 +64,35 @@
     <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
 
     @RenderSection("Scripts", false)
+
+    <style>
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .container .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            height: 50px;
+            width: 100%;
+        }
+    </style>
+
 </head>
 <body>
+    @Html.Partial("~/Views/Shared/_Header.cshtml")
+
     @RenderBody()
+
+    <div class="panel-footer footer">
+        footer
+    </div>
 </body>
 </html>
