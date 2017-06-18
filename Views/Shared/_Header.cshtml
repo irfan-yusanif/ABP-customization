@@ -24,7 +24,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="fa fa-user paddingRight5"></span>
-                            <span class="paddingRight5">@(CurrentUserDetail != null && !string.IsNullOrWhiteSpace(CurrentUserDetail.FullName) ? CurrentUserDetail.FullName : User.Identity.Name)</span>
+                            <span class="paddingRight5">@User.Identity.Name</span>
                             <span class="fa fa-caret-down"></span>
                         </a>
                         <ul class="dropdown-menu">
